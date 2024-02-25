@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 import edu.eci.ieti.proyecto.data.Plantation;
-import edu.eci.ieti.proyecto.exceptions.PlantsException;
+import edu.eci.ieti.proyecto.exceptions.PlantException;
 import edu.eci.ieti.proyecto.service.PlantationService;
 
 @RestController
@@ -37,17 +37,17 @@ public class PlantationController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Plantation> getPlantationById(@PathVariable Long id) throws PlantsException {
+    public ResponseEntity<Plantation> getPlantationById(@PathVariable Long id) throws PlantException {
         return ResponseEntity.ok(plantationService.getPlantationById(id).orElse(null));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Plantation> updatePlantation(@PathVariable Long id, @RequestBody Plantation plantation) throws PlantsException {
+    public ResponseEntity<Plantation> updatePlantation(@PathVariable Long id, @RequestBody Plantation plantation) throws PlantException {
         return ResponseEntity.ok(plantationService.updatePlantation(id, plantation));
     }
 
     @DeleteMapping("/{id}")
-    public void deletePlantation(@PathVariable Long id) throws PlantsException {
+    public void deletePlantation(@PathVariable Long id) throws PlantException {
         plantationService.deletePlantation(id);
     }
 }
