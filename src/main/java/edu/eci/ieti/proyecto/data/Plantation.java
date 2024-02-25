@@ -21,10 +21,12 @@ public class Plantation {
 
     @OneToMany(mappedBy = "plants", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Plant> plants;
+    private long size;
 
-    private String size; // 20X30 MTS^2 o 40X60 MTS^2
+
+    private Long area; // 20X30 MTS^2 o 40X60 MTS^2
     private double hydratationPercentage;
     private double fertilizationPercentage;
-    private int frequencyOfWateringDays;
+    private int frequency;
 
 }

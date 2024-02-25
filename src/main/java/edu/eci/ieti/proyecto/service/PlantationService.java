@@ -52,7 +52,6 @@ public class PlantationService {
         existingPlantation.setSize(newPlantation.getSize());
         existingPlantation.setHydratationPercentage(newPlantation.getHydratationPercentage());
         existingPlantation.setFertilizationPercentage(newPlantation.getFertilizationPercentage());
-        existingPlantation.setFrequencyOfWateringDays(newPlantation.getFrequencyOfWateringDays());
     
         return plantationRepository.save(existingPlantation);
     }
