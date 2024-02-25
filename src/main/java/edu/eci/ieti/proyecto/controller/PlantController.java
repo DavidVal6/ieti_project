@@ -3,6 +3,7 @@ package edu.eci.ieti.proyecto.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -29,23 +30,23 @@ public class PlantController {
     }
 
     @GetMapping
-    public List<Plant> getAllPlants() {
-        return plantService.getAllPlants();
+    public ResponseEntity<List<Plant>> getAllPlants() {
+        return ResponseEntity.ok(plantService.getAllPlants());
     }
 
     @PostMapping
-    public Plant createPlant(@RequestBody Plant plant) {
-        return plantService.createPlant(plant);
+    public ResponseEntity<Plant> createPlant(@RequestBody Plant plant) {
+        return ResponseEntity.ok(plantService.createPlant(plant));
     }
 
     @GetMapping("/{id}")
-    public Plant getPlantById(@PathVariable Long id) throws PlantsException {
-        return plantService.findPlantById(id).orElse(null);
+    public ResponseEntity<Plant> getPlantById(@PathVariable Long id) throws PlantsException {
+        return ResponseEntity.ok(plantService.findPlantById(id).orElse(null));
     }
 
     @PutMapping("/{id}")
-    public Plant updatePlant(@PathVariable Long id, @RequestBody Plant plant) throws PlantsException {
-        return plantService.updatePlant(plant,id);
+    public ResponseEntity<Plant> updatePlant(@PathVariable Long id, @RequestBody Plant plant) throws PlantsException {
+        return ResponseEntity.ok(plantService.updatePlant(plant,id));
     }
 
     @DeleteMapping("/{id}")
