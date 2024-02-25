@@ -17,7 +17,7 @@ import edu.eci.ieti.proyecto.exceptions.PlantsException;
 import edu.eci.ieti.proyecto.service.PlantationService;
 
 @RestController
-@RequestMapping("/api/plantation")
+@RequestMapping("/api/plantations")
 public class PlantationController {
 
     private final PlantationService plantationService;
@@ -43,7 +43,7 @@ public class PlantationController {
 
     @PutMapping("/{id}")
     public ResponseEntity<Plantation> updatePlantation(@PathVariable Long id, @RequestBody Plantation plantation) throws PlantsException {
-        return ResponseEntity.ok(plantationService.updatePlantation(plantation, id));
+        return ResponseEntity.ok(plantationService.updatePlantation(id, plantation));
     }
 
     @DeleteMapping("/{id}")

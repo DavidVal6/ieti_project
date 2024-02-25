@@ -42,7 +42,7 @@ public class PlantationService {
         }
     }
 
-    public Plantation updatePlantation(Plantation newPlantation, Long id) throws PlantsException {
+    public Plantation updatePlantation(Long id, Plantation newPlantation) throws PlantsException {
         Optional<Plantation> optionalPlantation = plantationRepository.findById(id);
         if (!optionalPlantation.isPresent()) {
             throw new PlantsException(PlantsException.PLANTATION_NOT_FOUND);
