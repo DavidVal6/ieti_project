@@ -3,9 +3,10 @@ package edu.eci.ieti.proyecto.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.Optional;
+import java.util.List;
 import edu.eci.ieti.proyecto.data.Plant;
 import edu.eci.ieti.proyecto.exceptions.PlantsException;
-import edu.eci.ieti.proyecto.repository.PlantRepository;
+import edu.eci.ieti.proyecto.repositories.PlantRepository;
 
 @Service
 public class PlantService {
@@ -20,11 +21,14 @@ public class PlantService {
         return plantRepository.save(plant);
     }
     public Optional<Plant> findPlantById(Long Id) throws PlantsException{
-        if(plantRepository.findById(Id) != null){
+        if(plantRepository.findById(Id).isPresent()){
             return plantRepository.findById(Id);
         }else{
             throw new PlantsException(PlantsException.PLANT_NOT_FOUND);
         }
+    }
+    public List<Plant> getAllPlants(){
+        return plantRepository.findAll();
     }
     public Plant updatePlant(Plant plant, Long id) throws PlantsException{
         Optional<Plant> optionalPlant= findPlantById(id);

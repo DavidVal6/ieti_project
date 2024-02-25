@@ -1,4 +1,4 @@
-package edu.eci.ieti.proyecto.repository;
+package edu.eci.ieti.proyecto.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

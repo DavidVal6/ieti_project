@@ -23,7 +23,7 @@ public class Plantation {
     private List<Plant> plants;
 
     private String size; // 20X30 MTS^2 o 40X60 MTS^2
-    private double hidratationPercentage;
+    private double hydratationPercentage;
     private double fertilizationPercentage;
     private int frequencyOfWateringDays;
 

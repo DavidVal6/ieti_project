@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 import edu.eci.ieti.proyecto.data.Plantation;
 import edu.eci.ieti.proyecto.exceptions.PlantsException;
-import edu.eci.ieti.proyecto.repository.PlantationRepository;
+import edu.eci.ieti.proyecto.repositories.PlantationRepository;
 
 @Service
 public class PlantationService {
@@ -42,14 +42,18 @@ public class PlantationService {
         }
     }
 
-    public  Plantation updatePlantation(Plantation plantation, Long id) throws PlantsException{
+    public Plantation updatePlantation(Plantation newPlantation, Long id) throws PlantsException {
         Optional<Plantation> optionalPlantation = plantationRepository.findById(id);
-        if(!optionalPlantation.isPresent()){
+        if (!optionalPlantation.isPresent()) {
             throw new PlantsException(PlantsException.PLANTATION_NOT_FOUND);
-        }else{
-            return plantationRepository.save(plantation);
         }
-    }
-
     
+        Plantation existingPlantation = optionalPlantation.get();
+        existingPlantation.setSize(newPlantation.getSize());
+        existingPlantation.setHydratationPercentage(newPlantation.getHydratationPercentage());
+        existingPlantation.setFertilizationPercentage(newPlantation.getFertilizationPercentage());
+        existingPlantation.setFrequencyOfWateringDays(newPlantation.getFrequencyOfWateringDays());
+    
+        return plantationRepository.save(existingPlantation);
+    }
 }
