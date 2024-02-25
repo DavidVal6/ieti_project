@@ -39,9 +39,9 @@ public class PlantationControllerTest {
 
         mockMvc.perform(MockMvcRequestBuilders.post("/api/plantations")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content("{ \"size\": \"20X30 MTS^2\" }"))
+                .content("{ \"size\": \"600\" }"))
                 .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.size").value("20X30 MTS^2"))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.size").value(600))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.id").value(1)); // Asegura que el id sea devuelto
     }
 
@@ -82,10 +82,10 @@ public class PlantationControllerTest {
 
         mockMvc.perform(MockMvcRequestBuilders.put("/api/plantations/" + id)
                 .contentType(MediaType.APPLICATION_JSON)
-                .content("{ \"size\": \"20X30 MTS^2\" }"))
+                .content("{ \"size\": \"600\" }"))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.id").value(id))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.size").value("20X30 MTS^2"));
+                .andExpect(MockMvcResultMatchers.jsonPath("$.size").value(600));
     }
 
     @Test
