@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import edu.eci.ieti.proyecto.data.User;
+import edu.eci.ieti.proyecto.data.dto.UserDto;
 import edu.eci.ieti.proyecto.exceptions.UserException;
 import edu.eci.ieti.proyecto.service.UserService;
 
@@ -33,7 +34,12 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<User> createUser(@RequestBody User user) {
+    public ResponseEntity<User> createUser(@RequestBody UserDto userDto) {
+        User user = new User(userDto.getName(),
+                userDto.getEmail(),
+                userDto.getPhoneNumber(),
+                userDto.getNumberOfHarvests(),
+                userDto.getHarvestPercentage());
         return ResponseEntity.ok(userService.createUser(user));
     }
 
@@ -44,7 +50,7 @@ public class UserController {
 
     @PutMapping("/{id}")
     public ResponseEntity<User> updateUser(@PathVariable Long id, @RequestBody User user) throws UserException {
-        return ResponseEntity.ok(userService.updateUser(user,id));
+        return ResponseEntity.ok(userService.updateUser(user, id));
     }
 
     @DeleteMapping("/{id}")
