@@ -18,9 +18,10 @@ public class Plant {
     private Long id;
 
     private String name;
-    private int plantedDays;
     private String plantType;
-    private boolean readyToHarvest;
+    private String altitude;
+    private String temperature;
+    private String  humidity;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "plantation_id", nullable = false)

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
+import java.util.Optional;
 
 import edu.eci.ieti.proyecto.data.Plantation;
 import edu.eci.ieti.proyecto.exceptions.PlantException;
@@ -22,7 +23,7 @@ public class PlantationController {
 
     private final PlantationService plantationService;
 
-    public PlantationController(@Autowired PlantationService plantationService){
+    public PlantationController(@Autowired PlantationService plantationService) {
         this.plantationService = plantationService;
     }
 
@@ -42,8 +43,10 @@ public class PlantationController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Plantation> updatePlantation(@PathVariable Long id, @RequestBody Plantation plantation) throws PlantException {
-        return ResponseEntity.ok(plantationService.updatePlantation(id, plantation));
+    public ResponseEntity<Plantation> updatePlantation(@PathVariable Long id, @RequestBody Plantation plantation)
+            throws PlantException {
+        Plantation updatedPlantation = plantationService.updatePlantation(id, plantation);
+        return ResponseEntity.ok(updatedPlantation);
     }
 
     @DeleteMapping("/{id}")
