@@ -21,9 +21,9 @@ public class PlantService {
         return plantRepository.save(plant);
     }
 
-    public Optional<Plant> findPlantById(Long Id) throws PlantException {
-        if (plantRepository.findById(Id).isPresent()) {
-            return plantRepository.findById(Id);
+    public Optional<Plant> findPlantById(String id) throws PlantException {
+        if (plantRepository.findById(id).isPresent()) {
+            return plantRepository.findById(id);
         } else {
             throw new PlantException(PlantException.PLANT_NOT_FOUND);
         }
@@ -42,7 +42,7 @@ public class PlantService {
         }
     }
 
-    public void deletePlant(Long id) throws PlantException {
+    public void deletePlant(String id) throws PlantException {
         Optional<Plant> plant = plantRepository.findById(id);
         if (!plant.isPresent()) {
             throw new PlantException(PlantException.PLANT_NOT_FOUND);

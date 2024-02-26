@@ -44,17 +44,17 @@ public class PlantController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Plant> getPlantById(@PathVariable Long id) throws PlantException {
+    public ResponseEntity<Plant> getPlantById(@PathVariable String id) throws PlantException {
         return ResponseEntity.ok(plantService.findPlantById(id).orElse(null));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Plant> updatePlant(@PathVariable Long id, @RequestBody Plant plant) throws PlantException {
+    public ResponseEntity<Plant> updatePlant(@PathVariable String id, @RequestBody Plant plant) throws PlantException {
         return ResponseEntity.ok(plantService.updatePlant(plant, id));
     }
 
     @DeleteMapping("/{id}")
-    public void deletePlant(@PathVariable Long id) throws PlantException {
+    public void deletePlant(@PathVariable String id) throws PlantException {
         plantService.deletePlant(id);
     }
 }

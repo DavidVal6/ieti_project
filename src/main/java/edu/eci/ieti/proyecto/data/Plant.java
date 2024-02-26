@@ -31,46 +31,6 @@ public class Plant {
         this.humidity = humidity;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public String getPlantType() {
-        return plantType;
-    }
-
-    public long getAltitude() {
-        return altitude;
-    }
-
-    public long getTemperature() {
-        return temperature;
-    }
-
-    public long getHumidity() {
-        return humidity;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setPlantType(String plantType) {
-        this.plantType = plantType;
-    }
-
-    public void setAltitude(long altitude) {
-        this.altitude = altitude;
-    }
-
-    public void setTemperature(long temperature) {
-        this.temperature = temperature;
-    }
-
-    public void setHumidity(long humidity) {
-        this.humidity = humidity;
-    }
-
     public Plant() {
     }
 
