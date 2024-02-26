@@ -21,7 +21,7 @@ public class PlantService {
         return plantRepository.save(plant);
     }
 
-    public Optional<Plant> findPlantById(String Id) throws PlantException {
+    public Optional<Plant> findPlantById(Long Id) throws PlantException {
         if (plantRepository.findById(Id).isPresent()) {
             return plantRepository.findById(Id);
         } else {
