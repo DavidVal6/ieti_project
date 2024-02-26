@@ -41,6 +41,9 @@ public class User {
         this.harvestPercentage = harvestPercentage;
     }
 
+    public User() {
+    }
+
     // public User(UserDto userDto) {
     //     this.userDto = userDto;
     //     this.name = userDto.getName();
