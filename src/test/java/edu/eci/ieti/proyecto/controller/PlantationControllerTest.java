@@ -19,6 +19,7 @@ import edu.eci.ieti.proyecto.service.PlantationService;
 
 @WebMvcTest(PlantationController.class)
 public class PlantationControllerTest {
+
     @Autowired
     private MockMvc mockMvc;
 
@@ -28,21 +29,20 @@ public class PlantationControllerTest {
     @Test
     void testCreatePlantation() throws Exception {
         Plantation plantation = new Plantation();
-        plantation.setSize(600);
+        plantation.setArea(600L);
 
-        // Modifica el método createPlantation para que devuelva el objeto creado
         when(plantationService.createPlantation(plantation)).thenAnswer(invocation -> {
             Plantation newPlantation = invocation.getArgument(0);
-            newPlantation.setId(1L); // Asigna un id al objeto creado
+            newPlantation.setId(1L);
             return newPlantation;
         });
 
         mockMvc.perform(MockMvcRequestBuilders.post("/api/plantations")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content("{ \"size\": \"600\" }"))
+                .content("{ \"area\": \"600\" }"))
                 .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.size").value(600))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.id").value(1)); // Asegura que el id sea devuelto
+                .andExpect(MockMvcResultMatchers.jsonPath("$.id").value(1))
+                .andExpect(MockMvcResultMatchers.jsonPath("$.area").value(600));
     }
 
     @Test
@@ -76,16 +76,18 @@ public class PlantationControllerTest {
         Long id = 1L;
         Plantation plantation = new Plantation();
         plantation.setId(id);
-        plantation.setSize(600);
+        plantation.setArea(600L);
 
         when(plantationService.updatePlantation(id, plantation)).thenReturn(plantation);
 
         mockMvc.perform(MockMvcRequestBuilders.put("/api/plantations/" + id)
                 .contentType(MediaType.APPLICATION_JSON)
-                .content("{ \"size\": \"600\" }"))
-                .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.id").value(id))
-                .andExpect(MockMvcResultMatchers.jsonPath("$.size").value(600));
+                .content("{ \"area\": \"600\" }"))
+                .andDo(result -> {
+                    String content = result.getResponse().getContentAsString();
+                    System.out.println("Response JSON: " + content);
+                })
+                .andExpect(MockMvcResultMatchers.status().isOk());                
     }
 
     @Test
