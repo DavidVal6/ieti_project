@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import edu.eci.ieti.proyecto.data.Plant;
+import edu.eci.ieti.proyecto.data.dto.PlantDto;
 import edu.eci.ieti.proyecto.exceptions.PlantException;
 import edu.eci.ieti.proyecto.service.PlantService;
 
@@ -33,7 +34,12 @@ public class PlantController {
     }
 
     @PostMapping
-    public ResponseEntity<Plant> createPlant(@RequestBody Plant plant) {
+    public ResponseEntity<Plant> createPlant(@RequestBody PlantDto plantDto) {
+        Plant plant = new Plant(plantDto.getName(),
+                plantDto.getPlantType(),
+                plantDto.getAltitude(),
+                plantDto.getTemperature(),
+                plantDto.getHumidity());
         return ResponseEntity.ok(plantService.createPlant(plant));
     }
 
@@ -44,7 +50,7 @@ public class PlantController {
 
     @PutMapping("/{id}")
     public ResponseEntity<Plant> updatePlant(@PathVariable Long id, @RequestBody Plant plant) throws PlantException {
-        return ResponseEntity.ok(plantService.updatePlant(plant,id));
+        return ResponseEntity.ok(plantService.updatePlant(plant, id));
     }
 
     @DeleteMapping("/{id}")

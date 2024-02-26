@@ -15,15 +15,64 @@ public class Plant {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private String id;
 
     private String name;
     private String plantType;
-    private String altitude;
-    private String temperature;
-    private String  humidity;
+    private long altitude;
+    private long temperature;
+    private long humidity;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "plantation_id", nullable = false)
-    private Plantation plantation;
+    public Plant(String name, String plantType, long altitude, long temperature, long humidity) {
+        this.name = name;
+        this.plantType = plantType;
+        this.altitude = altitude;
+        this.temperature = temperature;
+        this.humidity = humidity;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getPlantType() {
+        return plantType;
+    }
+
+    public long getAltitude() {
+        return altitude;
+    }
+
+    public long getTemperature() {
+        return temperature;
+    }
+
+    public long getHumidity() {
+        return humidity;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setPlantType(String plantType) {
+        this.plantType = plantType;
+    }
+
+    public void setAltitude(long altitude) {
+        this.altitude = altitude;
+    }
+
+    public void setTemperature(long temperature) {
+        this.temperature = temperature;
+    }
+
+    public void setHumidity(long humidity) {
+        this.humidity = humidity;
+    }
+
+    // @ManyToOne(cascade = CascadeType.ALL)
+    // @JoinColumn(name = "plantation_id", nullable = false)
+    // private Plantation plantation;
+
 }
