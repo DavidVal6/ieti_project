@@ -1,7 +1,7 @@
 package edu.eci.ieti.proyecto.service;
 
 import java.util.Optional;
-
+import java.lang.reflect.Field;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -45,14 +45,30 @@ public class PlantationService {
     public Plantation updatePlantation(Long id, Plantation newPlantation) throws PlantsException {
         Optional<Plantation> optionalPlantation = plantationRepository.findById(id);
         if (!optionalPlantation.isPresent()) {
-            throw new PlantsException(PlantsException.PLANTATION_NOT_FOUND);
+            throw new PlantsException("The plantation you are searching for has not been found");
         }
-    
         Plantation existingPlantation = optionalPlantation.get();
-        existingPlantation.setSize(newPlantation.getSize());
-        existingPlantation.setHydratationPercentage(newPlantation.getHydratationPercentage());
-        existingPlantation.setFertilizationPercentage(newPlantation.getFertilizationPercentage());
     
+        for (Field field : Plantation.class.getDeclaredFields()) {
+            if (field.getName().equals("id")) {
+                continue;
+            }
+
+            field.setAccessible(true);
+
+            Object newValue;
+            try {
+                newValue = field.get(newPlantation);
+                field.set(existingPlantation, newValue);
+            } catch (IllegalArgumentException e) {
+                e.printStackTrace();
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            }
+
+            // Update the value of the attribute in the existingPlantation object
+            
+        }
         return plantationRepository.save(existingPlantation);
     }
 }
