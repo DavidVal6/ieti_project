@@ -1,5 +1,6 @@
 package edu.eci.ieti.proyecto.data;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.CascadeType;
@@ -16,7 +17,7 @@ import lombok.Data;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private String id;
 
     @OneToMany(mappedBy = "plantations", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Plantation> plantations;
@@ -26,4 +27,27 @@ public class User {
     private Long phoneNumber;
     private Long numberOfHarverst;
     private Double harvestPercentage;
+
+    public User(String name, 
+            String email, 
+            Long phoneNumber, 
+            Long numberOfHarverst,
+            Double harvestPercentage) {
+        this.plantations = new ArrayList<Plantation>();
+        this.name = name;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.numberOfHarverst = numberOfHarverst;
+        this.harvestPercentage = harvestPercentage;
+    }
+
+    // public User(UserDto userDto) {
+    //     this.userDto = userDto;
+    //     this.name = userDto.getName();
+    //     this.email = userDto.getEmail();
+    //     this.phoneNumber = userDto.getPhoneNumber();
+    //     this.numberOfHarverst = userDto.getNumberOfHarvests();
+    //     this.harvestPercentage = userDto.getHarvestPercentage();
+    //     this.plantations = new ArrayList<Plantation>();
+    // }
 }
