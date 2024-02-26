@@ -92,7 +92,7 @@ public class PlantationControllerTest {
 
     @Test
     void testDeletePlantation() throws Exception {
-        Long id = 1L;
+        String id = "1L";
 
         mockMvc.perform(MockMvcRequestBuilders.delete("/api/plantations/" + id))
                 .andExpect(MockMvcResultMatchers.status().isOk());

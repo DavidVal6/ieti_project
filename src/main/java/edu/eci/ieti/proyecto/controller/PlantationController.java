@@ -49,19 +49,19 @@ public class PlantationController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Plantation> getPlantationById(@PathVariable Long id) throws PlantException {
+    public ResponseEntity<Plantation> getPlantationById(@PathVariable String id) throws PlantException {
         return ResponseEntity.ok(plantationService.getPlantationById(id).orElse(null));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Plantation> updatePlantation(@PathVariable Long id, @RequestBody Plantation plantation)
+    public ResponseEntity<Plantation> updatePlantation(@PathVariable String id, @RequestBody Plantation plantation)
             throws PlantException {
         Plantation updatedPlantation = plantationService.updatePlantation(id, plantation);
         return ResponseEntity.ok(updatedPlantation);
     }
 
     @DeleteMapping("/{id}")
-    public void deletePlantation(@PathVariable Long id) throws PlantException {
+    public void deletePlantation(@PathVariable String id) throws PlantException {
         plantationService.deletePlantation(id);
     }
 }
