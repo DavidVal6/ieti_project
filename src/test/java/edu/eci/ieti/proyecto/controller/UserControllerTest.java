@@ -35,7 +35,7 @@ public class UserControllerTest {
 
         when(userService.createUser(user)).thenAnswer(invocation -> {
             User newUser = invocation.getArgument(0);
-            newUser.setId(2L);
+            newUser.setId("2L");
             return newUser;
         });
 
@@ -63,7 +63,7 @@ public class UserControllerTest {
     @Test
     void testGetUserByID() throws Exception{
         User user = new User();
-        user.setId(1L);
+        user.setId("1L");
 
         when(userService.findUserById(1L)).thenReturn(Optional.of(user));
 
@@ -79,7 +79,7 @@ public class UserControllerTest {
 
         when(userService.updateUser(user,1L)).thenAnswer(invocation ->{
             User newUser = invocation.getArgument(0);
-            newUser.setId(1L);
+            newUser.setId("1L");
             newUser.setName("Juan");
             return newUser;
         });
