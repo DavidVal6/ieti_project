@@ -71,6 +71,9 @@ public class Plant {
         this.humidity = humidity;
     }
 
+    public Plant() {
+    }
+
     // @ManyToOne(cascade = CascadeType.ALL)
     // @JoinColumn(name = "plantation_id", nullable = false)
     // private Plantation plantation;

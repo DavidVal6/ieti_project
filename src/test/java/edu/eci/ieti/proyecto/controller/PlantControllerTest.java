@@ -44,7 +44,7 @@ public class PlantControllerTest {
     @Test
     void testCreatePlant() throws Exception {
         Plant plant = new Plant();
-        plant.setId(1L);
+        plant.setId("1L");
 
         when(plantService.createPlant(plant)).thenReturn(plant);
 
@@ -57,7 +57,7 @@ public class PlantControllerTest {
 
     @Test
     void testGetPlantById() throws Exception {
-        Long id = 1L;
+        String id = "1L";
         Plant plant = new Plant();
         plant.setId(id);
 
@@ -70,7 +70,7 @@ public class PlantControllerTest {
 
     @Test
     void testUpdatePlant() throws Exception {
-        Long id = 1L;
+        String id = "1L";
         Plant plant = new Plant();
         plant.setId(id);
 
