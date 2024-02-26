@@ -43,7 +43,8 @@ public class PlantationController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Plantation> updatePlantation(@PathVariable Long id, @RequestBody Plantation plantation) throws PlantsException {
+    public ResponseEntity<Plantation> updatePlantation(@PathVariable Long id, @RequestBody Plantation plantation)
+            throws PlantException {
         Plantation updatedPlantation = plantationService.updatePlantation(id, plantation);
         return ResponseEntity.ok(updatedPlantation);
     }
