@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import edu.eci.ieti.proyecto.data.Plantation;
-import edu.eci.ieti.proyecto.exceptions.PlantsException;
+import edu.eci.ieti.proyecto.exceptions.PlantException;
 import edu.eci.ieti.proyecto.repositories.PlantationRepository;
 
 @Service
@@ -23,29 +23,29 @@ public class PlantationService {
         return  plantationRepository.save(plantation);
     }
 
-    public Optional<Plantation> getPlantationById(Long Id) throws PlantsException{
+    public Optional<Plantation> getPlantationById(Long Id) throws PlantException{
         if(plantationRepository.findById(Id).isPresent()){
             return plantationRepository.findById(Id);
         }else{
-            throw new PlantsException(PlantsException.PLANTATION_NOT_FOUND);
+            throw new PlantException(PlantException.PLANTATION_NOT_FOUND);
         }
     }
     public List<Plantation> getAllPlantation(){
         return plantationRepository.findAll();
     }
 
-    public  void deletePlantation(Long id)throws PlantsException {
+    public  void deletePlantation(Long id)throws PlantException {
         try{
             plantationRepository.deleteById(id);
         }catch (Exception e){
-            throw new PlantsException("Error al eliminar la plantacion");
+            throw new PlantException("Error al eliminar la plantacion");
         }
     }
 
-    public Plantation updatePlantation(Long id, Plantation newPlantation) throws PlantsException {
+    public Plantation updatePlantation(Long id, Plantation newPlantation) throws PlantException {
         Optional<Plantation> optionalPlantation = plantationRepository.findById(id);
         if (!optionalPlantation.isPresent()) {
-            throw new PlantsException("The plantation you are searching for has not been found");
+            throw new PlantException(PlantException.PLANTATION_NOT_FOUND);
         }
         Plantation existingPlantation = optionalPlantation.get();
     

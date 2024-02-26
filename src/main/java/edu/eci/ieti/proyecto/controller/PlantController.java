@@ -14,10 +14,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import edu.eci.ieti.proyecto.data.Plant;
-import edu.eci.ieti.proyecto.data.Plantation;
-import edu.eci.ieti.proyecto.exceptions.PlantsException;
+import edu.eci.ieti.proyecto.exceptions.PlantException;
 import edu.eci.ieti.proyecto.service.PlantService;
-import edu.eci.ieti.proyecto.service.PlantationService;
 
 @RestController
 @RequestMapping("/api/plant")
@@ -40,17 +38,17 @@ public class PlantController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Plant> getPlantById(@PathVariable Long id) throws PlantsException {
+    public ResponseEntity<Plant> getPlantById(@PathVariable Long id) throws PlantException {
         return ResponseEntity.ok(plantService.findPlantById(id).orElse(null));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Plant> updatePlant(@PathVariable Long id, @RequestBody Plant plant) throws PlantsException {
+    public ResponseEntity<Plant> updatePlant(@PathVariable Long id, @RequestBody Plant plant) throws PlantException {
         return ResponseEntity.ok(plantService.updatePlant(plant,id));
     }
 
     @DeleteMapping("/{id}")
-    public void deletePlant(@PathVariable Long id) throws PlantsException {
+    public void deletePlant(@PathVariable Long id) throws PlantException {
         plantService.deletePlant(id);
     }
 }
