@@ -1,6 +1,6 @@
 # AGRO - GNOME
 
-<div style="width:70%; margin: auto;">
+<div style="width:30%; margin: auto;">
 
 ![alt text](images/Loguito.png)
 </div>
@@ -10,7 +10,7 @@ AGRO-GNOME es una solución tecnológica que busca mejorar la eficiencia de los 
 ## Diseño
 Esta iniciativa se organiza mediante los siguientes componentes claves:
 
-<div style="width:100%; margin: auto;">
+<div style="width:70%; margin: auto;">
 
 ![alt text](images/ERDiagram.png)
 </div>
@@ -21,7 +21,7 @@ Esta iniciativa se organiza mediante los siguientes componentes claves:
 4. `Sensores` Se trata de todas aquellas herramientas IoT que seran usadas para recopilar las diferentes métricas que la solución va a almacenar y procesar para ser presentadas a los usuarios en tiempo real. Además, estas métricas ayudan a alimentar la base de conocimiento de una inteligencia artificial la cual, junto a la información ofrecida por las plantas, podrá definir un contexto ideal sobre el que toda una plantación se podría regir definiendo diferentes pautas a seguir para máximizar los resultados finales de cada cultivo.
 
 ## Arquitectura
-<div style="width:105%; margin: auto;">
+<div style="width:70%; margin: auto;">
 
 ![Arquitectura](images/Arquitectura.jpeg)
 </div>
