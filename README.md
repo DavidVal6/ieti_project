@@ -76,6 +76,10 @@ $ mvn spring-boot:run
 ```
 http://localhost:8080/
 ```
+6. Para revisar la documentación de la API acceda a la siguiente ruta
+```
+http://localhost:8080/swagger-ui/index.html
+```
 
 
 ## Construido con
