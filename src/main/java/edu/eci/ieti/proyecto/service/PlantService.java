@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 import java.util.List;
 import edu.eci.ieti.proyecto.data.Plant;
-import edu.eci.ieti.proyecto.exceptions.PlantsException;
+import edu.eci.ieti.proyecto.exceptions.PlantException;
 import edu.eci.ieti.proyecto.repositories.PlantRepository;
 
 @Service
@@ -20,28 +20,28 @@ public class PlantService {
     public Plant createPlant(Plant plant){
         return plantRepository.save(plant);
     }
-    public Optional<Plant> findPlantById(Long Id) throws PlantsException{
+    public Optional<Plant> findPlantById(Long Id) throws PlantException{
         if(plantRepository.findById(Id).isPresent()){
             return plantRepository.findById(Id);
         }else{
-            throw new PlantsException(PlantsException.PLANT_NOT_FOUND);
+            throw new PlantException(PlantException.PLANT_NOT_FOUND);
         }
     }
     public List<Plant> getAllPlants(){
         return plantRepository.findAll();
     }
-    public Plant updatePlant(Plant plant, Long id) throws PlantsException{
+    public Plant updatePlant(Plant plant, Long id) throws PlantException{
         Optional<Plant> optionalPlant= findPlantById(id);
         if(!optionalPlant.isPresent()){
-            throw new PlantsException(PlantsException.PLANT_NOT_FOUND) ;
+            throw new PlantException(PlantException.PLANT_NOT_FOUND) ;
         }else{
             return plantRepository.save(plant);
         }
     }
-    public void deletePlant(Long id) throws PlantsException{
+    public void deletePlant(Long id) throws PlantException{
         Optional<Plant> plant = plantRepository.findById(id);
         if (!plant.isPresent()){
-            throw new PlantsException(PlantsException.PLANT_NOT_FOUND);
+            throw new PlantException(PlantException.PLANT_NOT_FOUND);
         }else{
             plantRepository.deleteById(id);
         }
