@@ -1,19 +1,17 @@
 # AGRO - GNOME
 
-<div style="width:30%; margin: auto;">
-
-![alt text](images/Loguito.png)
-</div>
+<p align="center">
+  <img src="images/Loguito.png" alt="Logo" style="width:40%; margin: auto;">
+</p>
 
 AGRO-GNOME es una solución tecnológica que busca mejorar la eficiencia de los cultivos y reducir las perdidas mediante la implementación de herramientas IoT (Internet Of Things) e inteligencia artificial para la toma rapida y efectiva de acciones en respuesta a las condiciones y necesidades de las siembras.
 
 ## Diseño
 Esta iniciativa se organiza mediante los siguientes componentes claves:
 
-<div style="width:70%; margin: auto;">
-
-![alt text](images/ERDiagram.png)
-</div>
+<p align="center">
+  <img src="images/ERDiagram.png" alt="ER" style="width:70%; margin: auto;">
+</p>
 
 1. `Usuarios` Los usuarios son el principal foco de atención, consiste en todos aquellos interesados en utilizar la solución tecnológica para sus plantaciones. Estos a su vez definen el esquema de datos que describe como esta distribuida la herramienta en cada instancia.
 2. `Plantación` Las plantaciones son todas aquellas áreas de cultivo que posea un usuario, en este componente se describen caracteristicas que posee cada cultivo (como su área en metros cuadrados) y métricas de seguimiento (como un porcentaje de riego) ambas con la finalidad de ofrecer una retroalimentación en tiempo real sobre el estado de cada sembrado.
@@ -21,10 +19,11 @@ Esta iniciativa se organiza mediante los siguientes componentes claves:
 4. `Sensores` Se trata de todas aquellas herramientas IoT que seran usadas para recopilar las diferentes métricas que la solución va a almacenar y procesar para ser presentadas a los usuarios en tiempo real. Además, estas métricas ayudan a alimentar la base de conocimiento de una inteligencia artificial la cual, junto a la información ofrecida por las plantas, podrá definir un contexto ideal sobre el que toda una plantación se podría regir definiendo diferentes pautas a seguir para máximizar los resultados finales de cada cultivo.
 
 ## Arquitectura
-<div style="width:70%; margin: auto;">
 
-![Arquitectura](images/Arquitectura.jpeg)
-</div>
+<p align="center">
+  <img src="images/Arquitectura.jpeg" alt="Arquitectura" style="width:70%; margin: auto;">
+</p>
+
 
 Los componentes de esta solución estaran desplegados en contenedores dockerizados montados en la nube.
 
