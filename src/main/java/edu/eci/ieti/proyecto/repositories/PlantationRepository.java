@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import edu.eci.ieti.proyecto.data.Plantation;
 
 @Repository
-public interface PlantationRepository extends MongoRepository<Plantation, Long> {
-    
+public interface PlantationRepository extends MongoRepository<Plantation, String> {
+
 }

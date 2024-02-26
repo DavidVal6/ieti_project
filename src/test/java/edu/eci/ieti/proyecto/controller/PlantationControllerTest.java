@@ -33,7 +33,7 @@ public class PlantationControllerTest {
 
         when(plantationService.createPlantation(plantation)).thenAnswer(invocation -> {
             Plantation newPlantation = invocation.getArgument(0);
-            newPlantation.setId(1L);
+            newPlantation.setId("1L");
             return newPlantation;
         });
 
@@ -60,7 +60,7 @@ public class PlantationControllerTest {
 
     @Test
     void testGetPlantationById() throws Exception {
-        Long id = 1L;
+        String id = "1L";
         Plantation plantation = new Plantation();
         plantation.setId(id);
 
@@ -73,7 +73,7 @@ public class PlantationControllerTest {
 
     @Test
     void testUpdatePlantation() throws Exception {
-        Long id = 1L;
+        String id = "1L";
         Plantation plantation = new Plantation();
         plantation.setId(id);
         plantation.setArea(600L);
@@ -87,7 +87,7 @@ public class PlantationControllerTest {
                     String content = result.getResponse().getContentAsString();
                     System.out.println("Response JSON: " + content);
                 })
-                .andExpect(MockMvcResultMatchers.status().isOk());                
+                .andExpect(MockMvcResultMatchers.status().isOk());
     }
 
     @Test

@@ -14,8 +14,10 @@ import java.util.List;
 import java.util.Optional;
 
 import edu.eci.ieti.proyecto.data.Plantation;
+import edu.eci.ieti.proyecto.data.User;
 import edu.eci.ieti.proyecto.data.dto.PlantationDto;
 import edu.eci.ieti.proyecto.exceptions.PlantException;
+import edu.eci.ieti.proyecto.exceptions.UserException;
 import edu.eci.ieti.proyecto.service.PlantationService;
 import edu.eci.ieti.proyecto.service.UserService;
 
@@ -38,8 +40,8 @@ public class PlantationController {
     }
 
     @PostMapping
-    public ResponseEntity<Plantation> createPlantation(@RequestBody PlantationDto plantationDto) {
-        User user = userService.getUserById(plantationDto.getUserId()).orElse(null);
+    public ResponseEntity<Plantation> createPlantation(@RequestBody PlantationDto plantationDto) throws UserException {
+        User user = userService.findUserById(plantationDto.getUserId()).orElse(null);
         Plantation plantation = new Plantation(user, plantationDto.getArea(), plantationDto.getIrrigationPercentage(),
                 plantationDto.getIrrigationFrequency(), plantationDto.getFertilizationPercentage(),
                 plantationDto.getInitDate(), plantationDto.getLocation());
