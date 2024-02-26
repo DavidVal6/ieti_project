@@ -21,9 +21,9 @@ public class User {
     @OneToMany(mappedBy = "plantations", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Plantation> plantations;
 
-    private String Name;
-    private String Email;
-    private Long PhoneNumber;
+    private String name;
+    private String email;
+    private Long phoneNumber;
     private Long numberOfHarverst;
     private Double harvestPercentage;
 }
