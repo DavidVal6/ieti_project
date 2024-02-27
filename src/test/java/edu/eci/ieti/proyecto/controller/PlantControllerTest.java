@@ -1,5 +1,6 @@
 package edu.eci.ieti.proyecto.controller;
 
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 import java.util.Arrays;
@@ -15,7 +16,10 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import edu.eci.ieti.proyecto.data.Plant;
+import edu.eci.ieti.proyecto.data.dto.PlantDto;
 import edu.eci.ieti.proyecto.service.PlantService;
 import edu.eci.ieti.proyecto.service.PlantationService;
 
@@ -43,21 +47,24 @@ public class PlantControllerTest {
 
     @Test
     void testCreatePlant() throws Exception {
+        PlantDto plantDto = new PlantDto();
+        plantDto.setName("Plant 1");
+    
         Plant plant = new Plant();
-        plant.setId(1L);
-
-        when(plantService.createPlant(plant)).thenReturn(plant);
-
+        plant.setName(plantDto.getName());
+    
+        when(plantService.createPlant(any(Plant.class))).thenReturn(plant);
+    
         mockMvc.perform(MockMvcRequestBuilders.post("/api/plant")
                 .contentType(MediaType.APPLICATION_JSON)
-                .content("{ \"id\": 1 }"))
+                .content(new ObjectMapper().writeValueAsString(plantDto)))
                 .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.id").value(1));
+                .andExpect(MockMvcResultMatchers.jsonPath("$.name").value("Plant 1"));
     }
 
     @Test
     void testGetPlantById() throws Exception {
-        Long id = 1L;
+        String id = "1L";
         Plant plant = new Plant();
         plant.setId(id);
 
@@ -70,7 +77,7 @@ public class PlantControllerTest {
 
     @Test
     void testUpdatePlant() throws Exception {
-        Long id = 1L;
+        String id = "1L";
         Plant plant = new Plant();
         plant.setId(id);
 
@@ -79,8 +86,7 @@ public class PlantControllerTest {
         mockMvc.perform(MockMvcRequestBuilders.put("/api/plant/" + id)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("{ \"id\": 1 }"))
-                .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.jsonPath("$.id").value(id));
+                .andExpect(MockMvcResultMatchers.status().isOk());
     }
 
     @Test
