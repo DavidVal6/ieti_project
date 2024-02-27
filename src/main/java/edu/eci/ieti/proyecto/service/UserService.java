@@ -22,6 +22,7 @@ public class UserService {
         return userRepository.save(user);
     }
 
+
     public Optional<User> findUserById(String id) throws UserException {
         if (userRepository.findById(id).isPresent()) {
             return userRepository.findById(id);
