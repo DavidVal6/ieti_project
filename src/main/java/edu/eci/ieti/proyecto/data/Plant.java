@@ -1,12 +1,9 @@
 package edu.eci.ieti.proyecto.data;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import lombok.Data;
 
 @Entity
@@ -21,9 +18,9 @@ public class Plant {
     private String plantType;
     private long altitude;
     private long temperature;
-    private long humidity;
+    private Double humidity;
 
-    public Plant(String name, String plantType, long altitude, long temperature, long humidity) {
+    public Plant(String name, String plantType, long altitude, long temperature, Double humidity) {
         this.name = name;
         this.plantType = plantType;
         this.altitude = altitude;

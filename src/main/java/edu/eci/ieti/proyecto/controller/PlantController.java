@@ -14,8 +14,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import edu.eci.ieti.proyecto.data.Plant;
+import edu.eci.ieti.proyecto.data.User;
 import edu.eci.ieti.proyecto.data.dto.PlantDto;
+import edu.eci.ieti.proyecto.data.dto.UserDto;
 import edu.eci.ieti.proyecto.exceptions.PlantException;
+import edu.eci.ieti.proyecto.exceptions.UserException;
 import edu.eci.ieti.proyecto.service.PlantService;
 
 @RestController
@@ -49,7 +52,13 @@ public class PlantController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Plant> updatePlant(@PathVariable String id, @RequestBody Plant plant) throws PlantException {
+    public ResponseEntity<Plant> updatePlant(@PathVariable String id, @RequestBody PlantDto plantDto) throws PlantException {
+        Plant plant = plantService.findPlantById(id).orElseThrow(() -> new PlantException(PlantException.PLANT_NOT_FOUND));
+        plant.setName(plantDto.getName());
+        plant.setPlantType(plantDto.getPlantType());
+        plant.setAltitude(plantDto.getAltitude());
+        plant.setTemperature(plantDto.getTemperature());
+        plant.setHumidity(plantDto.getHumidity());
         return ResponseEntity.ok(plantService.updatePlant(plant, id));
     }
 
