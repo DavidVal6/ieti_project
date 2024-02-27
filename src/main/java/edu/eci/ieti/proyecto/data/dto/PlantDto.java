@@ -38,7 +38,7 @@ public class PlantDto {
         return temperature != null ? Long.parseLong(temperature) : 0;
     }
     
-    public long getHumidity() {
-        return humidity != null ? Long.parseLong(humidity) : 0;
+    public Double getHumidity() {
+        return humidity != null ? Double.parseDouble(humidity) : 0;
     }
 }
