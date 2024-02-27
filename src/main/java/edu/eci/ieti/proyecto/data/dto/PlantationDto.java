@@ -42,10 +42,6 @@ public class PlantationDto {
         return Long.parseLong(area);
     }
 
-    public double getirrigationPercentage() {
-        return Double.parseDouble(irrigationPercentage);
-    }
-
     public double getFertilizationPercentage() {
         return Double.parseDouble(fertilizationPercentage);
     }
