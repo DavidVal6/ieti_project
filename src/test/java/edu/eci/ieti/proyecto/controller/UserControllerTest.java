@@ -9,7 +9,6 @@ import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
-
 import edu.eci.ieti.proyecto.data.User;
 import edu.eci.ieti.proyecto.service.UserService;
 
@@ -29,7 +28,7 @@ public class UserControllerTest {
     private UserService userService;
 
     @Test
-    void testCreateUser() throws Exception{
+    void testCreateUser() throws Exception {
         User user = new User();
         user.setName("Alejandro");
 
@@ -48,7 +47,7 @@ public class UserControllerTest {
     }
 
     @Test
-    void testGetAllUsers() throws Exception{
+    void testGetAllUsers() throws Exception {
         User user1 = new User();
         User user2 = new User();
         List<User> users = Arrays.asList(user1, user2);
@@ -61,11 +60,11 @@ public class UserControllerTest {
     }
 
     @Test
-    void testGetUserByID() throws Exception{
+    void testGetUserByID() throws Exception {
         User user = new User();
         user.setId("1L");
 
-        when(userService.findUserById(1L)).thenReturn(Optional.of(user));
+        when(userService.findUserById("1L")).thenReturn(Optional.of(user));
 
         mockMvc.perform(MockMvcRequestBuilders.get("/api/user/" + 1))
                 .andExpect(MockMvcResultMatchers.status().isOk())
@@ -73,11 +72,11 @@ public class UserControllerTest {
     }
 
     @Test
-    void testUpdateUser() throws Exception{
+    void testUpdateUser() throws Exception {
         User user = new User();
         user.setName("Carlos");
 
-        when(userService.updateUser(user,1L)).thenAnswer(invocation ->{
+        when(userService.updateUser(user, "1L")).thenAnswer(invocation -> {
             User newUser = invocation.getArgument(0);
             newUser.setId("1L");
             newUser.setName("Juan");
@@ -93,8 +92,8 @@ public class UserControllerTest {
     }
 
     @Test
-    void testDeleteUser() throws Exception{
-        Long id = 1L;
+    void testDeleteUser() throws Exception {
+        String id = "1L";
 
         mockMvc.perform(MockMvcRequestBuilders.delete("/api/user/" + id))
                 .andExpect(MockMvcResultMatchers.status().isOk());

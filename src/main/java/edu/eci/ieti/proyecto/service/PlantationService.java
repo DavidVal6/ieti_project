@@ -15,40 +15,41 @@ public class PlantationService {
 
     private final PlantationRepository plantationRepository;
 
-    public PlantationService(@Autowired PlantationRepository plantationRepository){
-        this.plantationRepository=plantationRepository;
+    public PlantationService(@Autowired PlantationRepository plantationRepository) {
+        this.plantationRepository = plantationRepository;
     }
 
-    public Plantation createPlantation(Plantation plantation){
-        return  plantationRepository.save(plantation);
+    public Plantation createPlantation(Plantation plantation) {
+        return plantationRepository.save(plantation);
     }
 
-    public Optional<Plantation> getPlantationById(Long Id) throws PlantException{
-        if(plantationRepository.findById(Id).isPresent()){
-            return plantationRepository.findById(Id);
-        }else{
+    public Optional<Plantation> getPlantationById(String id) throws PlantException {
+        if (plantationRepository.findById(id).isPresent()) {
+            return plantationRepository.findById(id);
+        } else {
             throw new PlantException(PlantException.PLANTATION_NOT_FOUND);
         }
     }
-    public List<Plantation> getAllPlantation(){
+
+    public List<Plantation> getAllPlantation() {
         return plantationRepository.findAll();
     }
 
-    public  void deletePlantation(Long id)throws PlantException {
-        try{
+    public void deletePlantation(String id) throws PlantException {
+        try {
             plantationRepository.deleteById(id);
-        }catch (Exception e){
+        } catch (Exception e) {
             throw new PlantException("Error al eliminar la plantacion");
         }
     }
 
-    public Plantation updatePlantation(Long id, Plantation newPlantation) throws PlantException {
+    public Plantation updatePlantation(String id, Plantation newPlantation) throws PlantException {
         Optional<Plantation> optionalPlantation = plantationRepository.findById(id);
         if (!optionalPlantation.isPresent()) {
             throw new PlantException(PlantException.PLANTATION_NOT_FOUND);
         }
         Plantation existingPlantation = optionalPlantation.get();
-    
+
         for (Field field : Plantation.class.getDeclaredFields()) {
             if (field.getName().equals("id")) {
                 continue;
@@ -67,7 +68,7 @@ public class PlantationService {
             }
 
             // Update the value of the attribute in the existingPlantation object
-            
+
         }
         return plantationRepository.save(existingPlantation);
     }

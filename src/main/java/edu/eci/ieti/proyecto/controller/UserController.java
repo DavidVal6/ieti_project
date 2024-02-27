@@ -44,17 +44,17 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<User> getUserById(@PathVariable Long id) throws UserException {
+    public ResponseEntity<User> getUserById(@PathVariable String id) throws UserException {
         return ResponseEntity.ok(userService.findUserById(id).orElse(null));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<User> updateUser(@PathVariable Long id, @RequestBody User user) throws UserException {
+    public ResponseEntity<User> updateUser(@PathVariable String id, @RequestBody User user) throws UserException {
         return ResponseEntity.ok(userService.updateUser(user, id));
     }
 
     @DeleteMapping("/{id}")
-    public void deleteUser(@PathVariable Long id) throws UserException {
+    public void deleteUser(@PathVariable String id) throws UserException {
         userService.deleteUser(id);
     }
 }
