@@ -1,5 +1,9 @@
 package edu.eci.ieti.proyecto.data.dto;
 
+import lombok.Data;
+
+@Data
+
 public class PlantDto {
     private String name;
     private String plantType;
@@ -14,6 +18,9 @@ public class PlantDto {
         this.temperature = temperature;
         this.humidity = humidity;
     }
+    public PlantDto(){
+
+    }
 
     public String getName() {
         return name;
@@ -24,14 +31,14 @@ public class PlantDto {
     }
 
     public long getAltitude() {
-        return Long.parseLong(altitude);
+        return altitude != null ? Long.parseLong(altitude) : 0;
     }
-
+    
     public long getTemperature() {
-        return Long.parseLong(temperature);
+        return temperature != null ? Long.parseLong(temperature) : 0;
     }
-
+    
     public long getHumidity() {
-        return Long.parseLong(humidity);
+        return humidity != null ? Long.parseLong(humidity) : 0;
     }
 }
