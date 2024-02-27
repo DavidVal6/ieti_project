@@ -25,32 +25,22 @@ public class User {
     private String name;
     private String email;
     private Long phoneNumber;
-    private Long numberOfHarverst;
+    private Long numberOfHarvest;
     private Double harvestPercentage;
 
     public User(String name, 
             String email, 
             Long phoneNumber, 
-            Long numberOfHarverst,
+            Long numberOfHarvest,
             Double harvestPercentage) {
-        this.plantations = new ArrayList<Plantation>();
         this.name = name;
         this.email = email;
         this.phoneNumber = phoneNumber;
-        this.numberOfHarverst = numberOfHarverst;
+        this.plantations = new ArrayList<Plantation>();
+        this.numberOfHarvest = numberOfHarvest;
         this.harvestPercentage = harvestPercentage;
     }
 
     public User() {
     }
-
-    // public User(UserDto userDto) {
-    //     this.userDto = userDto;
-    //     this.name = userDto.getName();
-    //     this.email = userDto.getEmail();
-    //     this.phoneNumber = userDto.getPhoneNumber();
-    //     this.numberOfHarverst = userDto.getNumberOfHarvests();
-    //     this.harvestPercentage = userDto.getHarvestPercentage();
-    //     this.plantations = new ArrayList<Plantation>();
-    // }
 }
