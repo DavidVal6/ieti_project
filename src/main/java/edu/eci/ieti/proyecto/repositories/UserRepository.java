@@ -9,4 +9,3 @@ import edu.eci.ieti.proyecto.data.User;
 public interface UserRepository extends MongoRepository<User, String>{
     
 }
-

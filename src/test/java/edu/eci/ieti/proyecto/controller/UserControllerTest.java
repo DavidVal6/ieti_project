@@ -9,7 +9,6 @@ import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
-
 import edu.eci.ieti.proyecto.data.User;
 import edu.eci.ieti.proyecto.service.UserService;
 
@@ -52,7 +51,7 @@ public class UserControllerTest {
     // }
 
     @Test
-    void testGetAllUsers() throws Exception{
+    void testGetAllUsers() throws Exception {
         User user1 = new User();
         User user2 = new User();
         List<User> users = Arrays.asList(user1, user2);
@@ -65,7 +64,7 @@ public class UserControllerTest {
     }
 
     @Test
-    void testGetUserByID() throws Exception{
+    void testGetUserByID() throws Exception {
         User user = new User();
         user.setId("1L");
 
@@ -98,6 +97,7 @@ public class UserControllerTest {
 
     @Test
     void testDeleteUser() throws Exception{
+
         String id = "1L";
 
         mockMvc.perform(MockMvcRequestBuilders.delete("/api/user/" + id))

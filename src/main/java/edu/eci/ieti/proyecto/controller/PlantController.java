@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import edu.eci.ieti.proyecto.data.Plant;
+import edu.eci.ieti.proyecto.data.dto.PlantDto;
 import edu.eci.ieti.proyecto.exceptions.PlantException;
 import edu.eci.ieti.proyecto.service.PlantService;
 
@@ -33,22 +34,27 @@ public class PlantController {
     }
 
     @PostMapping
-    public ResponseEntity<Plant> createPlant(@RequestBody Plant plant) {
+    public ResponseEntity<Plant> createPlant(@RequestBody PlantDto plantDto) {
+        Plant plant = new Plant(plantDto.getName(),
+                plantDto.getPlantType(),
+                plantDto.getAltitude(),
+                plantDto.getTemperature(),
+                plantDto.getHumidity());
         return ResponseEntity.ok(plantService.createPlant(plant));
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Plant> getPlantById(@PathVariable Long id) throws PlantException {
+    public ResponseEntity<Plant> getPlantById(@PathVariable String id) throws PlantException {
         return ResponseEntity.ok(plantService.findPlantById(id).orElse(null));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Plant> updatePlant(@PathVariable Long id, @RequestBody Plant plant) throws PlantException {
-        return ResponseEntity.ok(plantService.updatePlant(plant,id));
+    public ResponseEntity<Plant> updatePlant(@PathVariable String id, @RequestBody Plant plant) throws PlantException {
+        return ResponseEntity.ok(plantService.updatePlant(plant, id));
     }
 
     @DeleteMapping("/{id}")
-    public void deletePlant(@PathVariable Long id) throws PlantException {
+    public void deletePlant(@PathVariable String id) throws PlantException {
         plantService.deletePlant(id);
     }
 }

@@ -22,9 +22,10 @@ public class UserService {
         return userRepository.save(user);
     }
 
-    public Optional<User> findUserById(String Id) throws UserException {
-        if (userRepository.findById(Id).isPresent()) {
-            return userRepository.findById(Id);
+
+    public Optional<User> findUserById(String id) throws UserException {
+        if (userRepository.findById(id).isPresent()) {
+            return userRepository.findById(id);
         } else {
             throw new UserException(UserException.USER_NOT_FOUND);
         }
