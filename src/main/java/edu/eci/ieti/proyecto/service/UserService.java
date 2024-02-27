@@ -22,7 +22,7 @@ public class UserService {
         return userRepository.save(user);
     }
 
-    public Optional<User> findUserById(Long Id) throws UserException {
+    public Optional<User> findUserById(String Id) throws UserException {
         if (userRepository.findById(Id).isPresent()) {
             return userRepository.findById(Id);
         } else {
@@ -34,7 +34,7 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    public User updateUser(User user, Long id) throws UserException {
+    public User updateUser(User user, String id) throws UserException {
         Optional<User> optionalUser = findUserById(id);
         if (!optionalUser.isPresent()) {
             throw new UserException(UserException.USER_NOT_FOUND);
@@ -43,7 +43,7 @@ public class UserService {
         }
     }
 
-    public void deleteUser(Long id) throws UserException {
+    public void deleteUser(String id) throws UserException {
         Optional<User> user = userRepository.findById(id);
         if (!user.isPresent()) {
             throw new UserException(UserException.USER_NOT_FOUND);

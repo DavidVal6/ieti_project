@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 import edu.eci.ieti.proyecto.data.User;
 
 @Repository
-public interface UserRepository extends MongoRepository<User, Long>{
+public interface UserRepository extends MongoRepository<User, String>{
     
 }
 

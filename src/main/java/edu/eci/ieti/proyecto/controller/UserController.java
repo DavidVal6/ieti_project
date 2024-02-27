@@ -1,6 +1,7 @@
 package edu.eci.ieti.proyecto.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -44,17 +45,22 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<User> getUserById(@PathVariable Long id) throws UserException {
+    public ResponseEntity<User> getUserById(@PathVariable String id) throws UserException {
         return ResponseEntity.ok(userService.findUserById(id).orElse(null));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<User> updateUser(@PathVariable Long id, @RequestBody User user) throws UserException {
+    public ResponseEntity<User> updateUser(@PathVariable String id, @RequestBody UserDto userDto) throws UserException {
+        User user = userService.findUserById(id).orElseThrow(() -> new UserException(UserException.USER_NOT_FOUND));
+        user.setName(userDto.getName());
+        user.setEmail(userDto.getEmail());
+        user.setPhoneNumber(userDto.getPhoneNumber());
+        user.setHarvestPercentage(userDto.getHarvestPercentage());
         return ResponseEntity.ok(userService.updateUser(user, id));
     }
 
     @DeleteMapping("/{id}")
-    public void deleteUser(@PathVariable Long id) throws UserException {
+    public void deleteUser(@PathVariable String id) throws UserException {
         userService.deleteUser(id);
     }
 }
