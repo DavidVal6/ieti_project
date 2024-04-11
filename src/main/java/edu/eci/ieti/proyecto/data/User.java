@@ -24,9 +24,13 @@ public class User {
 
     private String name;
     private String email;
+    private String password;
     private Long phoneNumber;
     private Long numberOfHarvest;
     private Double harvestPercentage;
+    
+    
+    
 
     public User(String name, 
             String email, 
