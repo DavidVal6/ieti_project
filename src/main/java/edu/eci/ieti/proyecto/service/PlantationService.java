@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 import edu.eci.ieti.proyecto.data.Plantation;
 import edu.eci.ieti.proyecto.exceptions.PlantException;
-import edu.eci.ieti.proyecto.repositories.PlantationRepository;
+import edu.eci.ieti.proyecto.repository.PlantationRepository;
 
 @Service
 public class PlantationService {

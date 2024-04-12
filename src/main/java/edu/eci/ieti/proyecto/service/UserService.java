@@ -10,7 +10,7 @@ import java.util.List;
 
 import edu.eci.ieti.proyecto.data.User;
 import edu.eci.ieti.proyecto.exceptions.UserException;
-import edu.eci.ieti.proyecto.repositories.UserRepository;
+import edu.eci.ieti.proyecto.repository.UserRepository;
 
 @Service
 public class UserService{
