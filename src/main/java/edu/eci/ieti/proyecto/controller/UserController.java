@@ -70,7 +70,6 @@ public class UserController {
 
     @GetMapping("/mensaje")
     public ResponseEntity<?> getMensaje(){
-        var auth = SecurityContextHolder.getContext().getAuthentication();
         Map<String,String> mensaje = new HashMap<>();
         return ResponseEntity.ok(mensaje);         
     }
