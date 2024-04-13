@@ -1,5 +1,7 @@
 package edu.eci.ieti.proyecto.data.dto;
 
+import edu.eci.ieti.proyecto.data.Role;
+
 public class UserDto {
 
     private String name;
