@@ -24,10 +24,21 @@ public class AuthenticationController {
 
     @PostMapping("/register")
     public ResponseEntity<AuthResponse> register(@RequestBody RegisterRequest request){
+        System.out.println("Esto es en el controlador " + request.getPassword());
         return ResponseEntity.ok(authService.register(request));
     } 
     @PostMapping("/Authenticate")
     public ResponseEntity<AuthResponse> authenticate(@RequestBody AuthenticationRequest request){
         return ResponseEntity.ok(authService.authenticate(request));
-    } 
+    }
+
+    @PostMapping("/test")
+    public ResponseEntity<String> test(@RequestBody RegisterRequest request){
+        if (request != null) {
+            System.out.println(request + "");
+            return ResponseEntity.ok(request.getName() + " " + request.getEmail() + " " + request.getPassword());
+        } else {
+            return ResponseEntity.ok("Request es nulo");
+        }
+    }
 }

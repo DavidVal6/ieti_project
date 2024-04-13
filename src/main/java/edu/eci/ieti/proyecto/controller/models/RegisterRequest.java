@@ -1,19 +1,14 @@
 package edu.eci.ieti.proyecto.controller.models;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-@Data
 @Builder
+@Data
 @NoArgsConstructor
+@ToString
 @AllArgsConstructor
 public class RegisterRequest {
     private String name;
     private String email;
     private String password;
-    private Long phoneNumber;
-    private Long numberOfHarvest;
-    private Double harvestPercentage;
 }

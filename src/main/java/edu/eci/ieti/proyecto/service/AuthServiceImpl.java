@@ -25,6 +25,7 @@ public class AuthServiceImpl implements AuthService {
 
     @Override
     public AuthResponse register(RegisterRequest request) {
+        System.out.println(request.getPassword());
         var user = User.builder()
                 .name(request.getName())
                 .password(passwordEncoder.encode(request.getPassword()))
