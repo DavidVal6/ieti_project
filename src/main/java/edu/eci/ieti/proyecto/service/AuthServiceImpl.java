@@ -40,12 +40,11 @@ public class AuthServiceImpl implements AuthService {
 
     @Override
     public AuthResponse authenticate(AuthenticationRequest request) {
-         authenticationManager.authenticate(
-            new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword())
-         );
-         var user = userRepository.findByEmail(request.getEmail()).orElseThrow();
-         var jwToken = jwtService.generateToken(user);
-         return AuthResponse.builder().token(jwToken).build();
+        authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword()));
+        var user = userRepository.findByEmail(request.getEmail()).orElseThrow();
+        var jwToken = jwtService.generateToken(user);
+        return AuthResponse.builder().token(jwToken).build();
     }
 
 }
