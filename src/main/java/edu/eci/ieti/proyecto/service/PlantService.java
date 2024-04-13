@@ -6,7 +6,7 @@ import java.util.Optional;
 import java.util.List;
 import edu.eci.ieti.proyecto.data.Plant;
 import edu.eci.ieti.proyecto.exceptions.PlantException;
-import edu.eci.ieti.proyecto.repositories.PlantRepository;
+import edu.eci.ieti.proyecto.repository.PlantRepository;
 
 @Service
 public class PlantService {
