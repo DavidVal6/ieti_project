@@ -33,7 +33,7 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.csrf(csrf -> csrf.disable())
-                .authorizeHttpRequests(auth -> auth.requestMatchers("").permitAll()
+                .authorizeHttpRequests(auth -> auth.requestMatchers(publicEndpoints()).permitAll()
                         .anyRequest().authenticated())
                 .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authenticationProvider(authenticationProvider)
@@ -43,7 +43,7 @@ public class SecurityConfig {
 
     private RequestMatcher publicEndpoints(){
         return new OrRequestMatcher(
-            new AntPathRequestMatcher("")
+            new AntPathRequestMatcher("/**")
         );
     }
 

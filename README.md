@@ -1,4 +1,4 @@
-# AGRO - GNOME
+|# AGRO - GNOME
 
 <p align="center">
   <img src="images/Loguito.png" alt="Logo" style="width:40%; margin: auto;">

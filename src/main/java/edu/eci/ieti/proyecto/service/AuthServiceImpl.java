@@ -1,8 +1,8 @@
 package edu.eci.ieti.proyecto.service;
 
+import edu.eci.ieti.proyecto.data.User;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -26,7 +26,7 @@ public class AuthServiceImpl implements AuthService {
     @Override
     public AuthResponse register(RegisterRequest request) {
         var user = User.builder()
-                .username(request.getName())
+                .name(request.getName())
                 .password(passwordEncoder.encode(request.getPassword()))
                 .email(request.getEmail())
                 .role(Role.USER)
@@ -42,7 +42,7 @@ public class AuthServiceImpl implements AuthService {
     public AuthResponse authenticate(AuthenticationRequest request) {
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword()));
-        var user = userRepository.findByEmail(request.getEmail()).orElseThrow();
+        var user = userRepository.findUserByEmail(request.getEmail()).orElseThrow();
         var jwToken = jwtService.generateToken(user);
         return AuthResponse.builder().token(jwToken).build();
     }
