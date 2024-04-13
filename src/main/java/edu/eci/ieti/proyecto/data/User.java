@@ -56,6 +56,7 @@ public class User implements UserDetails {
         this.plantations = new ArrayList<Plantation>();
         this.numberOfHarvest = numberOfHarvest;
         this.harvestPercentage = harvestPercentage;
+        this.role = Role.USER;
     }
 
     @Override
