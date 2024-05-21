@@ -2,6 +2,8 @@ package edu.eci.ieti.proyecto.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -48,6 +50,20 @@ public class SecurityConfig {
 //            new AntPathRequestMatcher("/api/auth/register"),
 //            new AntPathRequestMatcher("/api/auth/authenticate")
         );
+    }
+	
+	@Bean
+    public WebMvcConfigurer corsConfigurer() {
+        return new WebMvcConfigurer() {
+            @Override
+            public void addCorsMappings(CorsRegistry registry) {
+                registry.addMapping("/**") // Permite CORS en todas las rutas
+                        .allowedOrigins("http://localhost:5173") // Cambia esto al origen de tu frontend
+                        .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS") // Métodos permitidos
+                        .allowedHeaders("*") // Permitir todos los encabezados
+                        .allowCredentials(true); // Permitir credenciales
+            }
+        };
     }
 
     // @Bean
