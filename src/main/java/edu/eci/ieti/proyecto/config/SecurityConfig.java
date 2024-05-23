@@ -58,7 +58,7 @@ public class SecurityConfig {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**") // Permite CORS en todas las rutas
-                        .allowedOrigins("http://localhost:5173") // Cambia esto al origen de tu frontend
+                        .allowedOrigins("http://localhost:3000") // Cambia esto al origen de tu frontend
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS") // Métodos permitidos
                         .allowedHeaders("*") // Permitir todos los encabezados
                         .allowCredentials(true); // Permitir credenciales
